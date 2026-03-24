@@ -51,7 +51,7 @@ async-mega-py = "mega.cli:main"
 mega-py = "mega.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/NTFSvolume/mega.py"
+Homepage = "https://github.com/justatest420/mega"
 
 [tool.coverage.run]
 omit = [

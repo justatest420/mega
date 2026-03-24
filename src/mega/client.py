@@ -223,7 +223,7 @@ class MegaNzClient(APIContextManager):
 
             except Exception as exc:
                 msg = format_error(exc)
-                logger.error(f'Unable to download {web_url} to "{output_path}" {msg}')
+                logger.exception(f'Unable to download {web_url} to "{output_path}" {msg}')
                 result = exc
 
             return file.id, result

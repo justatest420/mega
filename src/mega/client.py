@@ -164,9 +164,12 @@ class MegaNzClient(APIContextManager):
 
     async def download(self, node: Node, output_dir: str | PathLike[str] | None = None) -> Path:
         """Download a file by it's file object."""
-        file_info = await self._core.request_file_info(node.id)
-        output_path = Path(output_dir or ".") / node.attributes.name
-        return await self._core.download_file(file_info, node._crypto, output_path)
+        try:
+            file_info = await self._core.request_file_info(node.id)
+            output_path = Path(output_dir or ".") / node.attributes.name
+            return await self._core.download_file(file_info, node._crypto, output_path)
+        except Exception as er:
+            logger.exception(er)
 
     async def download_url(self, url: str | yarl.URL, output_dir: str | PathLike[str] | None = None) -> DownloadResults:
         """Download a public file or folder by it's URL."""
